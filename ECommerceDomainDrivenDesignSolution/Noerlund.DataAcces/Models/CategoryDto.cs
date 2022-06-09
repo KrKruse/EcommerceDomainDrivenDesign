@@ -12,5 +12,6 @@ namespace Noerlund.DataAcces.Models
         [Key]
         public Guid CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public ICollection<ProductDto> ProductDtos { get; set; }
     }
 }

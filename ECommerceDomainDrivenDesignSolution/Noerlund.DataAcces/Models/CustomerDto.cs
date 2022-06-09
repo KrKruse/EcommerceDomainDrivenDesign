@@ -14,5 +14,7 @@ namespace Noerlund.DataAcces.Models
         public String CustomerName { get; set; }
         public String CustomerEmail { get; set; }
         public int PhoneNumber { get; set; }
+
+        public ICollection<OrderDto> OrderDtos { get; set; }
     }
 }
