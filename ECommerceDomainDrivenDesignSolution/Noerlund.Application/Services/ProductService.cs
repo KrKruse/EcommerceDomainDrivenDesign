@@ -5,34 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 using Noerlund.Application.Models;
 using Noerlund.Domain.Models;
+using Noerlund.Domain.Repositories;
 
 namespace Noerlund.Application.Services
 {
     public class ProductService : IProductService
     {
-        public Task CreateProductAsync(ProductDto p)
+        private readonly IProductRepo _repo;
+
+        public ProductService(IProductRepo repo)
         {
-            throw new NotImplementedException();
+            _repo = repo;
+        }
+        public async Task CreateProductAsync(ProductDtoRequest p)
+        {
+            var product = new Product(p.ProductId, p.ProductName, p.Description, p.Image, p.CategoryId);
+            await _repo.CreateProductAsync(product);
         }
 
-        public Task DeleteProductAsync(Guid id)
+        public async Task DeleteProductAsync(Guid id)
         {
-            throw new NotImplementedException();
+            // tjek om produkt er der, måske slet 
+            var prod = _repo.GetProductByGuidId(id);
+            
+            await _repo.DeleteProductAsync(id);
         }
 
-        public Task UpdateProductAsync(ProductDto p)
+        public async Task UpdateProductAsync(ProductDtoRequest p)
         {
-            throw new NotImplementedException();
+            var toBeUpdated = new Product(p.ProductId, p.ProductName, p.Description, p.Image, p.CategoryId);
+
+            await _repo.UpdateProductAsync(toBeUpdated);
         }
 
         public Product GetProductByGuidId(Guid Id)
         {
-            throw new NotImplementedException();
+            var prod = _repo.GetProductByGuidId(Id);
+
+            return prod;
         }
 
-        public List<Product> getAllProductsByCategory(string Category)
+        public List<Product> getAllProductsByCategory(Guid categoryId)
         {
-            throw new NotImplementedException();
+            var dtos = _repo.GetAllProductsByCategory(categoryId);
+
+            return dtos;
         }
     }
 }

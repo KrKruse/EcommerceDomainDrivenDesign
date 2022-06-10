@@ -13,6 +13,6 @@ namespace Noerlund.Domain.Repositories
         Task DeleteProductAsync(Guid id);
         Task UpdateProductAsync(Product p);
         Product GetProductByGuidId(Guid id);
-        List<Product> getAllProductsByCategory(string category);
+        List<Product> GetAllProductsByCategory(Guid categoryId);
     }
 }
