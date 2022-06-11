@@ -11,15 +11,13 @@ namespace Noerlund.Domain.Models
         public Guid ProductId { get; private set; }
         public string ProductName { get; private set; }
         public string Description { get; private set; }
-        public byte[] Image { get; private set; }
         public Guid CategoryId { get; private set; }
 
-        public Product(Guid id, string productName, string description, byte[] image, Guid categoryId)
+        public Product(Guid id, string productName, string description, Guid categoryId)
         {
             ProductId = id;
             ProductName = productName;
             Description = description;
-            Image = image;
             CategoryId = categoryId;
         }
     }

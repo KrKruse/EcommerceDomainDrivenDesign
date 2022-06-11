@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Noerlund.Application.Models
 {
-    public class ProductDtoRequest
+    public class CategoryDtoRequest
     {
-        public Guid ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string Description { get; set; }
         public Guid CategoryId { get; set; }
+        public string CategoryName { get; set; }
     }
 }

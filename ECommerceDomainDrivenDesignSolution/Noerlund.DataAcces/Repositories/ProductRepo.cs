@@ -16,6 +16,11 @@ namespace Noerlund.DataAcces.Repositories
     public class ProductRepo : IProductRepo
     {
         private readonly NoerlundContext _context;
+
+        public ProductRepo(NoerlundContext context)
+        {
+            _context = context;
+        }
         public async Task CreateProductAsync(Product p)
         {
             var dto = Mapper.Map(p);
@@ -39,7 +44,6 @@ namespace Noerlund.DataAcces.Repositories
             dto.ProductId = p.ProductId;
             dto.ProductName = p.ProductName;
             dto.Description = p.Description;
-            dto.Image = p.Image;
             dto.CategoryId = p.CategoryId;
 
             await _context.SaveChangesAsync();

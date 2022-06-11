@@ -10,7 +10,7 @@ namespace Noerlund.Application.Services
 {
     public interface IProductService
     {
-        Task CreateProductAsync(ProductDtoRequest p);
+        Task CreateProductAsync(CreateProductDto p);
         Task DeleteProductAsync(Guid id);
         Task UpdateProductAsync(ProductDtoRequest p);
         Product GetProductByGuidId(Guid id);

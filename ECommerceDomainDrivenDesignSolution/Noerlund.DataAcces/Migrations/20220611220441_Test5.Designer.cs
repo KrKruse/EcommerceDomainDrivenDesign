@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Noerlund.DataAcces.Contexts;
 
 namespace Noerlund.DataAcces.Migrations
 {
     [DbContext(typeof(NoerlundContext))]
-    partial class NoerlundContextModelSnapshot : ModelSnapshot
+    [Migration("20220611220441_Test5")]
+    partial class Test5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,6 +102,9 @@ namespace Noerlund.DataAcces.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<Guid?>("OrderItemDtoOrderItemId")
                         .HasColumnType("uniqueidentifier");
 
@@ -140,7 +145,7 @@ namespace Noerlund.DataAcces.Migrations
             modelBuilder.Entity("Noerlund.DataAcces.Models.ProductDto", b =>
                 {
                     b.HasOne("Noerlund.DataAcces.Models.CategoryDto", "CategoryDto")
-                        .WithMany("ProductsDtos")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -150,11 +155,6 @@ namespace Noerlund.DataAcces.Migrations
                         .HasForeignKey("OrderItemDtoOrderItemId");
 
                     b.Navigation("CategoryDto");
-                });
-
-            modelBuilder.Entity("Noerlund.DataAcces.Models.CategoryDto", b =>
-                {
-                    b.Navigation("ProductsDtos");
                 });
 
             modelBuilder.Entity("Noerlund.DataAcces.Models.CustomerDto", b =>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Noerlund.DataAcces.Contexts;
 
 namespace Noerlund.DataAcces.Migrations
 {
     [DbContext(typeof(NoerlundContext))]
-    partial class NoerlundContextModelSnapshot : ModelSnapshot
+    [Migration("20220611220910_Test6")]
+    partial class Test6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,6 +101,9 @@ namespace Noerlund.DataAcces.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<Guid?>("OrderItemDtoOrderItemId")
                         .HasColumnType("uniqueidentifier");

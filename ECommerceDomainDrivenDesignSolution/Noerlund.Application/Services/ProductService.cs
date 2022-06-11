@@ -17,11 +17,6 @@ namespace Noerlund.Application.Services
         {
             _repo = repo;
         }
-        public async Task CreateProductAsync(ProductDtoRequest p)
-        {
-            var product = new Product(p.ProductId, p.ProductName, p.Description, p.Image, p.CategoryId);
-            await _repo.CreateProductAsync(product);
-        }
 
         public async Task DeleteProductAsync(Guid id)
         {
@@ -33,7 +28,7 @@ namespace Noerlund.Application.Services
 
         public async Task UpdateProductAsync(ProductDtoRequest p)
         {
-            var toBeUpdated = new Product(p.ProductId, p.ProductName, p.Description, p.Image, p.CategoryId);
+            var toBeUpdated = new Product(p.ProductId, p.ProductName, p.Description, p.CategoryId);
 
             await _repo.UpdateProductAsync(toBeUpdated);
         }
@@ -50,6 +45,13 @@ namespace Noerlund.Application.Services
             var dtos = _repo.GetAllProductsByCategory(categoryId);
 
             return dtos;
+        }
+
+        public async Task CreateProductAsync(CreateProductDto p)
+        {
+            Guid id = Guid.NewGuid();
+            var product = new Product(id, p.ProductName, p.Description, p.CategoryId);
+            await _repo.CreateProductAsync(product);
         }
     }
 }

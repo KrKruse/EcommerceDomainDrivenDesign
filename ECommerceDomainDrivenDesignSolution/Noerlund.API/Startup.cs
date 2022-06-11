@@ -11,7 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Noerlund.Application.Services;
 using Noerlund.DataAcces.Contexts;
+using Noerlund.DataAcces.Repositories;
+using Noerlund.Domain.Repositories;
 
 namespace Noerlund.API
 {
@@ -35,6 +38,11 @@ namespace Noerlund.API
             });
 
             services.AddScoped<NoerlundContext>();
+
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICategoryRepo, CategoryRepo>();
+            services.AddScoped<IProductRepo, ProductRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

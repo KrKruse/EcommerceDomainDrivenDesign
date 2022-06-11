@@ -20,7 +20,7 @@ namespace Noerlund.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateProduct(ProductDtoRequest p)
+        public async Task<ActionResult> CreateProduct(CreateProductDto p)
         {
             await _service.CreateProductAsync(p);
             return Ok("Product Created");
@@ -32,8 +32,8 @@ namespace Noerlund.API.Controllers
             return Ok(_service.GetProductByGuidId(id));
         }
 
-        [HttpGet("{categoryId}")]v
-        public async Task<ActionResult<IReadOnlyList<ProductDtoRequest>>> GetAllProductsByCategoryGuid([FromRoute] Guid id)
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<ProductDtoRequest>>> GetAllProductsByCategoryGuid(Guid id)
         {
             return Ok(_service.getAllProductsByCategory(id));
         }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Noerlund.DataAcces.Contexts;
 
 namespace Noerlund.DataAcces.Migrations
 {
     [DbContext(typeof(NoerlundContext))]
-    partial class NoerlundContextModelSnapshot : ModelSnapshot
+    [Migration("20220611212912_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,11 +96,17 @@ namespace Noerlund.DataAcces.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CategoryDtoCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<Guid?>("OrderItemDtoOrderItemId")
                         .HasColumnType("uniqueidentifier");
@@ -108,7 +116,7 @@ namespace Noerlund.DataAcces.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryDtoCategoryId");
 
                     b.HasIndex("OrderItemDtoOrderItemId");
 
@@ -140,10 +148,8 @@ namespace Noerlund.DataAcces.Migrations
             modelBuilder.Entity("Noerlund.DataAcces.Models.ProductDto", b =>
                 {
                     b.HasOne("Noerlund.DataAcces.Models.CategoryDto", "CategoryDto")
-                        .WithMany("ProductsDtos")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("ProductDtos")
+                        .HasForeignKey("CategoryDtoCategoryId");
 
                     b.HasOne("Noerlund.DataAcces.Models.OrderItemDto", null)
                         .WithMany("ProductDtos")
@@ -154,7 +160,7 @@ namespace Noerlund.DataAcces.Migrations
 
             modelBuilder.Entity("Noerlund.DataAcces.Models.CategoryDto", b =>
                 {
-                    b.Navigation("ProductsDtos");
+                    b.Navigation("ProductDtos");
                 });
 
             modelBuilder.Entity("Noerlund.DataAcces.Models.CustomerDto", b =>
