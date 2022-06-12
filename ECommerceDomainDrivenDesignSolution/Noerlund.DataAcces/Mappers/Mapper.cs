@@ -102,5 +102,49 @@ namespace Noerlund.DataAcces.Mappers
                 CustomerId = order.CustomerId
             };
         }
+        public static Order Map(OrderDto dto)
+        {
+            var order = new Order(dto.OrderId, dto.CustomerId);
+            return order;
+        }
+        public static List<Order> Map(IQueryable<OrderDto> dtos)
+        {
+            var types = new List<Order>();
+            foreach (var d in dtos)
+            {
+                var type = new Order(d.OrderId, d.CustomerId);
+
+                types.Add(type);
+            }
+
+            return types;
+        }
+        public static OrderItemDto Map(OrderItem orderItem)
+        {
+            return new OrderItemDto()
+            {
+                OrderItemId = orderItem.OrderItemId,
+                OrderId = orderItem.OrderId,
+                ProductId = orderItem.ProductId,
+                Quantity = orderItem.Quantity
+            };
+        }
+        public static OrderItem Map(OrderItemDto dto)
+        {
+            var orderItem = new OrderItem(dto.OrderItemId, dto.OrderId, dto.ProductId, dto.Quantity);
+            return orderItem;
+        }
+        public static List<OrderItem> Map(IQueryable<OrderItemDto> dtos)
+        {
+            var types = new List<OrderItem>();
+            foreach (var d in dtos)
+            {
+                var type = new OrderItem(d.OrderItemId, d.OrderId, d.ProductId, d.Quantity);
+
+                types.Add(type);
+            }
+
+            return types;
+        }
     }
 }

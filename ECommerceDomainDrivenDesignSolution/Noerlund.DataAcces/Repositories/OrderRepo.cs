@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using Microsoft.EntityFrameworkCore;
 using Noerlund.DataAcces.Contexts;
 using Noerlund.DataAcces.Mappers;
+using Noerlund.DataAcces.Models;
 using Noerlund.Domain.Models;
 using Noerlund.Domain.Repositories;
 
@@ -25,24 +28,40 @@ namespace Noerlund.DataAcces.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteOrderAsync(Guid id)
+        public async Task DeleteOrderAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var toRemove = Find(id);
+
+            _context.OrderDtos.Remove(toRemove);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateOrderAsync(Order ord)
+        public async Task UpdateOrderAsync(Order ord)
         {
-            throw new NotImplementedException();
+            OrderDto dto = _context.OrderDtos.Find(ord.OrderId);
+
+            dto.CustomerId = ord.CustomerId;
+
+            await _context.SaveChangesAsync();
         }
 
         public Order GetOrderByGuidId(Guid id)
         {
-            throw new NotImplementedException();
+            var ord = _context.OrderDtos.AsNoTracking().FirstOrDefault(f => f.CustomerId.Equals(id));
+            if (ord == null)
+                return null;
+            return Mapper.Map(ord);
         }
 
         public List<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            var dtos = _context.OrderDtos.ToList().AsQueryable();
+            return Mapper.Map(dtos);
+        }
+        private OrderDto Find(Guid id)
+        {
+            return _context.OrderDtos.Find(id);
         }
     }
 }

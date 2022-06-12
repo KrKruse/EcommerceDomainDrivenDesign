@@ -18,7 +18,9 @@ namespace Noerlund.DataAcces.Models
         [ForeignKey(nameof(OrderId))]
         public OrderDto OrderDto { get; set; }
 
-        public ICollection<ProductDto> ProductDtos { get; set; }
+        public Guid ProductId { get; set; }
+        [ForeignKey(nameof(ProductId))]
+        public ProductDto ProductDto { get; set; }
 
     }
 }

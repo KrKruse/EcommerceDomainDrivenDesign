@@ -12,7 +12,7 @@ namespace Noerlund.DataAcces.Contexts
     {
         public DbSet<CustomerDto> CustomerDtos { get; set; }
         public DbSet<OrderDto> OrderDtos { get; set; }
-        public DbSet<OrderItemDto> OrderItemDtosType { get; set; }
+        public DbSet<OrderItemDto> OrderItemDtos { get; set; }
         public DbSet<CategoryDto> CategoryDtos { get; set; }
         public DbSet<ProductDto> ProductDtos { get; set; }
 
