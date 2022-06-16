@@ -32,8 +32,8 @@ namespace Noerlund.API.Controllers
             return Ok(_service.GetProductByGuidId(id));
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductDtoRequest>>> GetAllProductsByCategoryGuid(Guid id)
+        [HttpGet("/Getall/{id}")]
+        public async Task<ActionResult<IReadOnlyList<ProductDtoRequest>>> GetAllProductsByCategoryGuid([FromRoute] Guid id)
         {
             return Ok(_service.getAllProductsByCategory(id));
         }

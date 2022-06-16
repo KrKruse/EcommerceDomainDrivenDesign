@@ -27,7 +27,6 @@ namespace Noerlund.Application.Services
         public async Task DeleteCategoryAsync(Guid id)
         {
             // tjek om produkt er der, måske slet 
-            var Cat = _repo.GetCategoryByGuidId(id);
 
             await _repo.DeleteCategoryAsync(id);
         }
@@ -39,9 +38,9 @@ namespace Noerlund.Application.Services
             return dtos;
         }
 
-        public Category GetCategoryByGuidId(Guid id)
+        public Category GetCategoryByGuidCategoryName(string categoryName)
         {
-            var category = _repo.GetCategoryByGuidId(id);
+            var category = _repo.GetCategoryByGuidId(categoryName);
 
             return category;
         }

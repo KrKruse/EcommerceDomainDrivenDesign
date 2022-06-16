@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noerlund.API", "Noerlund.API\Noerlund.API.csproj", "{1A0EDC7E-F657-446E-A445-1E2EFDFFD1A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.API", "Noerlund.API\Noerlund.API.csproj", "{1A0EDC7E-F657-446E-A445-1E2EFDFFD1A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noerlund.Application", "Noerlund.Application\Noerlund.Application.csproj", "{D316EEC9-9F90-4436-9293-B40D2AD0EFB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.Application", "Noerlund.Application\Noerlund.Application.csproj", "{D316EEC9-9F90-4436-9293-B40D2AD0EFB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noerlund.DataAcces", "Noerlund.DataAcces\Noerlund.DataAcces.csproj", "{698B2343-9750-4BCB-A325-F0D128C998DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.DataAcces", "Noerlund.DataAcces\Noerlund.DataAcces.csproj", "{698B2343-9750-4BCB-A325-F0D128C998DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noerlund.Domain", "Noerlund.Domain\Noerlund.Domain.csproj", "{970816D1-E496-4A7C-95FD-09CE42EFFD06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.Domain", "Noerlund.Domain\Noerlund.Domain.csproj", "{970816D1-E496-4A7C-95FD-09CE42EFFD06}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.Ui", "Noerlund.Ui\Noerlund.Ui.csproj", "{2EBF6EA7-7085-469B-8F85-111F6FD5100E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noerlund.UnitTest", "Noerlund.UnitTest\Noerlund.UnitTest.csproj", "{CAD72DA2-C773-4222-B738-D50CDAB61560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{970816D1-E496-4A7C-95FD-09CE42EFFD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{970816D1-E496-4A7C-95FD-09CE42EFFD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{970816D1-E496-4A7C-95FD-09CE42EFFD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EBF6EA7-7085-469B-8F85-111F6FD5100E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EBF6EA7-7085-469B-8F85-111F6FD5100E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EBF6EA7-7085-469B-8F85-111F6FD5100E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EBF6EA7-7085-469B-8F85-111F6FD5100E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

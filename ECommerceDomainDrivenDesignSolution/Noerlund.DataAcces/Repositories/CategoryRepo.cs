@@ -36,6 +36,15 @@ namespace Noerlund.DataAcces.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public Category GetCategoryByGuidId(string categoryName)
+        {
+            var cat = _context.CategoryDtos.AsNoTracking().ToList().FirstOrDefault(f => f.CategoryName.Equals(categoryName));
+            if (cat == null)
+                return null;
+
+            return Mapper.Map(cat);
+        }
+
         public async Task UpdateCategoryAsync(Category cat)
         {
             CategoryDto dto = _context.CategoryDtos.Find(cat.CategoryId);
@@ -54,15 +63,6 @@ namespace Noerlund.DataAcces.Repositories
         {
             var dtos = _context.CategoryDtos.ToList().AsQueryable();
             return Mapper.Map(dtos);
-        }
-
-        Category ICategoryRepo.GetCategoryByGuidId(Guid id)
-        {
-            var cat = _context.CategoryDtos.AsNoTracking().ToList().FirstOrDefault(f => f.CategoryId.Equals(id));
-            if (cat == null)
-                return null;
-
-            return Mapper.Map(cat);
         }
     }
 }

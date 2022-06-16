@@ -37,6 +37,15 @@ namespace Noerlund.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Noerlund.API", Version = "v1" });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowBlazorOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:5006").AllowAnyMethod().AllowAnyHeader();
+                    });
+            });
+
             services.AddScoped<NoerlundContext>();
 
             services.AddScoped<IProductService, ProductService>();
@@ -66,6 +75,8 @@ namespace Noerlund.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowBlazorOrigin");
 
             app.UseAuthorization();
 

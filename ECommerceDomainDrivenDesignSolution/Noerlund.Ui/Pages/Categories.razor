@@ -1,0 +1,58 @@
+﻿@page "/Categories"
+@page "/Categories/{NameOfCategory}"
+@inject ICategoryService _categoryService
+@inject IProductService _productService
+@inject NavigationManager NavigationManager
+
+<h3>@categoryModel.CategoryName</h3>
+
+@if (ProductList == null)
+{
+    <span>Loading...</span>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Pris</th>
+        </tr>
+        </thead>
+        <tbody >
+        @foreach (var prod in ProductList)
+        {
+            <tr>
+                <td>@prod.ProductName</td>
+                <td>@prod.Description</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string NameOfCategory { get; set; }
+
+    public List<CategoryModel> CategoryList { get; set; }
+
+    public List<ProductModel> ProductList { get; set; }
+
+    CategoryModel categoryModel = new CategoryModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        CategoryList = (await _categoryService.GetAllCategories()).ToList();
+        foreach (var cat in CategoryList)
+        {
+            if (NameOfCategory == cat.CategoryName)
+            {
+                categoryModel = cat;
+            }
+        }
+
+        ProductList = (await _productService.GetAllProductsByCategory(categoryModel.CategoryId));
+
+    }
+}

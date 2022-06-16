@@ -13,7 +13,7 @@ namespace Noerlund.Application.Services
         Task CreateCategoryAsync(CreateCategoryDto cat);
         Task DeleteCategoryAsync(Guid id);
         Task UpdateCategoryAsync(CategoryDtoRequest cat);
-        Category GetCategoryByGuidId(Guid id);
+        Category GetCategoryByGuidCategoryName(string categoryName);
         List<Category> getAllCategories();
     }
 }

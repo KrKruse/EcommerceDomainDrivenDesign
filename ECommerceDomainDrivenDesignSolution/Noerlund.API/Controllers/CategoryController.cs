@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Noerlund.Application.Models;
 using Noerlund.Application.Services;
 
@@ -10,6 +11,7 @@ namespace Noerlund.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]/")]
+    [EnableCors("AllowBlazorOrigin")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _service;
@@ -25,13 +27,13 @@ namespace Noerlund.API.Controllers
             return Ok("Product Created");
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<CategoryDtoRequest> GetCategoryByGuid([FromRoute] Guid id)
+        [HttpGet("{categoryName}")]
+        public ActionResult<CategoryDtoRequest> GetCategoryByGuid([FromRoute] string categoryName)
         {
-            return Ok(_service.GetCategoryByGuidId(id));
+            return Ok(_service.GetCategoryByGuidCategoryName(categoryName));
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<IReadOnlyList<CategoryDtoRequest>>> GetAllCategory()
         {
             return Ok(_service.getAllCategories());

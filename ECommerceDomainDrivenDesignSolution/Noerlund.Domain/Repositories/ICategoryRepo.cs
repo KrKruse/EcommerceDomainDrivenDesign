@@ -12,7 +12,7 @@ namespace Noerlund.Domain.Repositories
         Task CreateCategoryAsync(Category cat);
         Task DeleteCategoryAsync(Guid id);
         Task UpdateCategoryAsync(Category cat);
-        Category GetCategoryByGuidId(Guid id);
+        Category GetCategoryByGuidId(String categoryName);
         List<Category> GetAllCategoriesList();
     }
 }

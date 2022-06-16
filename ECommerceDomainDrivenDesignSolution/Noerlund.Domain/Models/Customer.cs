@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Noerlund.Domain.Models
 {
     public class Customer
-    {
-        public Guid CustomerId { get; private set; }
+    { public Guid CustomerId { get; private set; }
         public String CustomerName { get; private set; }
         public String CustomerEmail { get; private set; }
         public int PhoneNumber { get; private set; }
