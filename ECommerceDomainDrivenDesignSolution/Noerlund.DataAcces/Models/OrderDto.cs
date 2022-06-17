@@ -12,6 +12,7 @@ namespace Noerlund.DataAcces.Models
     {
         [Key]
         public Guid OrderId { get; set; }
+        public  int TotalPris { get; set; }
 
         public Guid CustomerId { get; set; }
         [ForeignKey(nameof(CustomerId))]

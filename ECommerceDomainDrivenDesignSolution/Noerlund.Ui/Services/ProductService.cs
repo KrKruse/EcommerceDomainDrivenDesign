@@ -15,9 +15,16 @@ namespace Noerlund.Ui.Services
         {
             _client = client;
         }
-        public Task CreateProductAsync(ProductModel p)
+
+        public async Task<CreateProductModel> CreateProductAsync(ProductModel p)
         {
-            throw new NotImplementedException();
+            var response = await _client.PostAsJson($"/api/v1/Product", p);
+            if (response.IsSuccessStatusCode)
+                return await response.ReadContentAs<CreateProductModel>();
+            else
+            {
+                throw new Exception("Something went wrong when calling api.");
+            }
         }
 
         public Task DeleteProductAsync(Guid id)
@@ -31,14 +38,21 @@ namespace Noerlund.Ui.Services
             return await response.ReadContentAs<List<ProductModel>>();
         }
 
-        public Task<ProductModel> GetProductByGuidId(Guid id)
+        public async Task<ProductModel> GetProductByGuidId(Guid id)
         {
-            throw new NotImplementedException();
+            var response = await _client.GetAsync($"/api/v1/Product/{id}");
+            return await response.ReadContentAs<ProductModel>();
         }
 
-        public Task UpdateProductAsync(ProductModel p)
+        public async Task<ProductModel> UpdateProductAsync(ProductModel p)
         {
-            throw new NotImplementedException();
+            var response = await _client.PutAsJson($"/api/v1/Product/{p.ProductId}", p);
+            if (response.IsSuccessStatusCode)
+                return await response.ReadContentAs<ProductModel>();
+            else
+            {
+                throw new Exception("Something went wrong when calling api.");
+            }
         }
     }
 }

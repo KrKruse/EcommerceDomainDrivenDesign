@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Noerlund.DataAcces.Contexts;
 
 namespace Noerlund.DataAcces.Migrations
 {
     [DbContext(typeof(NoerlundContext))]
-    partial class NoerlundContextModelSnapshot : ModelSnapshot
+    [Migration("20220616173326_PriceInclude")]
+    partial class PriceInclude
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

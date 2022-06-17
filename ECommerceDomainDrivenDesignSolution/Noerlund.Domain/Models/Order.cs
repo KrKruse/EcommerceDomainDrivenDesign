@@ -9,11 +9,13 @@ namespace Noerlund.Domain.Models
     public class Order
     {
         public Guid OrderId { get; private set; }
+        public int TotalPris { get; private set; }
         public Guid  CustomerId { get; private set; }
 
-        public Order(Guid orderId, Guid customerId)
+        public Order(Guid orderId, int totalPris, Guid customerId)
         {
             OrderId = orderId;
+            TotalPris = totalPris;
             CustomerId = customerId;
         }
     }

@@ -42,6 +42,7 @@ namespace Noerlund.DataAcces.Repositories
             ProductDto dto = _context.ProductDtos.Find(p.ProductId);
 
             dto.ProductId = p.ProductId;
+            dto.Pris = p.Pris;
             dto.ProductName = p.ProductName;
             dto.Description = p.Description;
             dto.CategoryId = p.CategoryId;

@@ -1,0 +1,108 @@
+﻿@page "/productedit/{ProdName}/{categoryName}"
+@page "/CreateProduct/{CategoryName}"
+@inject IProductService _productService
+@inject ICategoryService _categoryService
+@inject NavigationManager NavigationManager
+
+@if (prod.ProductId == null)
+{
+    <h3>Lav nyt Produkt</h3>
+}
+else
+{
+    <h3>Edit @prod.ProductName</h3>
+}
+
+
+<EditForm Model="prod" OnSubmit="HandleSubmit">
+    <div>
+        <label for="ProductName">Produkt Navn</label>
+        <InputText id="ProductName" @bind-Value="prod.ProductName" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="Price">Pris</label>
+        <InputNumber id="Price" @bind-Value="prod.Price" class="form-control"></InputNumber>
+    </div>
+    <div>
+        <label for="ProductDesription">Produkts Beskrivelse</label>
+        <InputText id="ProductDesription" @bind-Value="prod.Description" class="form-control"></InputText>
+    </div>
+    @*<div>*@
+        @*<label>Kategorier</label><br />
+        <InputSelect @bind-Value="prod.CategoryId" class="form-control">
+            @foreach (var categ in CategoryList)
+            {
+                <option value="@categ.CategoryId">@categ.CategoryName</option>
+            }
+        </InputSelect>
+    </div>*@
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string ProdName { get; set; }
+
+    [Parameter]
+    public string CategoryName { get; set; }
+
+    string btnText = string.Empty;
+
+    ProductModel prod = new ProductModel();
+
+    CreateProductModel createProd = new CreateProductModel();
+
+    CategoryModel categoryModel = new CategoryModel();
+
+    public List<CategoryModel> CategoryList { get; set; }
+
+    public List<ProductModel> ProductList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = ProdName == null ? "Gem nyt produkt" : "Opdateret Produkt";
+
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        CategoryList = (await _categoryService.GetAllCategories()).ToList();
+        foreach (var cat in CategoryList)
+        {
+            if (CategoryName == cat.CategoryName)
+            {
+                categoryModel = cat;
+            }
+        }
+
+        ProductList = (await _productService.GetAllProductsByCategory(categoryModel.CategoryId));
+        foreach (var products in ProductList)
+        {
+            if (products.ProductName == ProdName)
+            {
+                prod = products;
+                prod.CategoryId = categoryModel.CategoryId;
+            }
+            else
+            {
+                prod = new ProductModel();
+                prod.CategoryId = categoryModel.CategoryId;
+            }
+        }
+    }
+
+    async Task HandleSubmit()
+    {
+        if (prod.ProductId == Guid.Empty)
+        {
+            prod.ProductId = Guid.NewGuid();
+            await _productService.CreateProductAsync(prod);
+        }
+        else
+        {
+            await _productService.UpdateProductAsync(prod);
+        }
+    }
+
+}

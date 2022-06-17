@@ -21,7 +21,7 @@ namespace Noerlund.Application.Services
         {
             // tjek om produkt er der, måske slet 
             Guid id = Guid.NewGuid();
-            var ord = new Order(id, order.CustomerId);
+            var ord = new Order(id, order.TotalPrice, order.CustomerId);
             await _repo.CreateOrderAsync(ord);
         }
 
@@ -34,7 +34,7 @@ namespace Noerlund.Application.Services
 
         public async Task UpdateOrderAsync(OrderDtoRequest order)
         {
-            var toBeUpdated = new Order(order.OrderId, order.CustomerId);
+            var toBeUpdated = new Order(order.OrderId, order.TotalPrice, order.CustomerId);
 
             await _repo.UpdateOrderAsync(toBeUpdated);
         }

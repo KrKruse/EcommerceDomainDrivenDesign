@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.Domain", "Noerlund
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.Ui", "Noerlund.Ui\Noerlund.Ui.csproj", "{2EBF6EA7-7085-469B-8F85-111F6FD5100E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noerlund.UnitTest", "Noerlund.UnitTest\Noerlund.UnitTest.csproj", "{CAD72DA2-C773-4222-B738-D50CDAB61560}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noerlund.UnitTestMoq", "Noerlund.UnitTestMoq\Noerlund.UnitTestMoq.csproj", "{481CAADE-A2D4-4C31-B34C-ECA0225AF605}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{2EBF6EA7-7085-469B-8F85-111F6FD5100E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EBF6EA7-7085-469B-8F85-111F6FD5100E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EBF6EA7-7085-469B-8F85-111F6FD5100E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAD72DA2-C773-4222-B738-D50CDAB61560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{481CAADE-A2D4-4C31-B34C-ECA0225AF605}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481CAADE-A2D4-4C31-B34C-ECA0225AF605}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481CAADE-A2D4-4C31-B34C-ECA0225AF605}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481CAADE-A2D4-4C31-B34C-ECA0225AF605}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

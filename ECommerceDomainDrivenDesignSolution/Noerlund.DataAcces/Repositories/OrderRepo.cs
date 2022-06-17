@@ -42,6 +42,7 @@ namespace Noerlund.DataAcces.Repositories
             OrderDto dto = _context.OrderDtos.Find(ord.OrderId);
 
             dto.CustomerId = ord.CustomerId;
+            dto.TotalPris = ord.TotalPris;
 
             await _context.SaveChangesAsync();
         }

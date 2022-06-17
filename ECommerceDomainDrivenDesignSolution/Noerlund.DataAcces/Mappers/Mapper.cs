@@ -15,14 +15,15 @@ namespace Noerlund.DataAcces.Mappers
             return new ProductDto
             {
                 ProductId = product.ProductId,
-                ProductName = product.ProductName,
+                Pris = product.Pris,
+                    ProductName = product.ProductName,
                 Description = product.Description,
                 CategoryId = product.CategoryId
             };
         }
         public static Product Map(ProductDto dto)
         {
-            var product = new Product(dto.ProductId, dto.ProductName, dto.Description, dto.CategoryId);
+            var product = new Product(dto.ProductId, dto.Pris, dto.ProductName, dto.Description, dto.CategoryId);
             return product;
         }
         public static List<Product> Map(IQueryable<ProductDto> dtos)
@@ -30,7 +31,7 @@ namespace Noerlund.DataAcces.Mappers
             var types = new List<Product>();
             foreach (var d in dtos)
             {
-                var type = new Product(d.ProductId, d.ProductName, d.Description, d.CategoryId);
+                var type = new Product(d.ProductId, d.Pris, d.ProductName, d.Description, d.CategoryId);
 
                 types.Add(type);
             }
@@ -99,12 +100,13 @@ namespace Noerlund.DataAcces.Mappers
             return new OrderDto()
             {
                 OrderId = order.OrderId,
+                TotalPris = order.TotalPris,
                 CustomerId = order.CustomerId
             };
         }
         public static Order Map(OrderDto dto)
         {
-            var order = new Order(dto.OrderId, dto.CustomerId);
+            var order = new Order(dto.OrderId, dto.TotalPris, dto.CustomerId);
             return order;
         }
         public static List<Order> Map(IQueryable<OrderDto> dtos)
@@ -112,7 +114,7 @@ namespace Noerlund.DataAcces.Mappers
             var types = new List<Order>();
             foreach (var d in dtos)
             {
-                var type = new Order(d.OrderId, d.CustomerId);
+                var type = new Order(d.OrderId, d.TotalPris, d.CustomerId);
 
                 types.Add(type);
             }

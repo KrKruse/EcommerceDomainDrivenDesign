@@ -17,6 +17,7 @@ else
         <tr>
             <th>Name</th>
             <th>Pris</th>
+            <th>Description</th>
         </tr>
         </thead>
         <tbody >
@@ -24,11 +25,19 @@ else
         {
             <tr>
                 <td>@prod.ProductName</td>
+                <td>@prod.Price</td>
                 <td>@prod.Description</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => ShowEditProduct(prod.ProductName, categoryModel.CategoryName))"><i class="oi oi-pencil"></i></button>
+                </td>
             </tr>
         }
+        <td>
+            <button class="btn btn-primary" @onclick="(() => ShowCreateProduct(categoryModel.CategoryName))"><i class="oi oi-action-redo"></i></button>
+        </td>
         </tbody>
     </table>
+
 }
 
 @code {
@@ -55,4 +64,15 @@ else
         ProductList = (await _productService.GetAllProductsByCategory(categoryModel.CategoryId));
 
     }
+
+    void ShowEditProduct( string prodname, string categoryName)
+    {
+        NavigationManager.NavigateTo($"/productedit/{prodname}/{categoryName}");
+    }
+
+    void ShowCreateProduct(string CategoryName)
+    {
+        NavigationManager.NavigateTo($"/CreateProduct/{CategoryName}");
+    }
+
 }
