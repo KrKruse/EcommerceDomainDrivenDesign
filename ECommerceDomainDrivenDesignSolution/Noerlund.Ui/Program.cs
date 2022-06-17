@@ -4,10 +4,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
+using Blazored.Toast;
 using Microsoft.AspNetCore.Components;
+using Noerlund.Ui.BasketServices;
+using Noerlund.Ui.BasketServices;
 using Noerlund.Ui.Services;
 
 namespace Noerlund.Ui
@@ -23,6 +28,10 @@ namespace Noerlund.Ui
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IBasketService, BasketService>();
+
+            builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddBlazoredToast();
 
             await builder.Build().RunAsync();
         }

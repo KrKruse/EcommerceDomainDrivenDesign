@@ -1,8 +1,11 @@
 ﻿@page "/Categories"
 @page "/Categories/{NameOfCategory}"
 @inject ICategoryService _categoryService
+@inject IBasketService _basketService
 @inject IProductService _productService
 @inject NavigationManager NavigationManager
+@inject ILocalStorageService _localStorage
+@inject IToastService _toastService
 
 <h3>@categoryModel.CategoryName</h3>
 
@@ -25,10 +28,13 @@ else
         {
             <tr>
                 <td>@prod.ProductName</td>
-                <td>@prod.Price</td>
+                <td>@prod.ProductPrice</td>
                 <td>@prod.Description</td>
                 <td>
                     <button class="btn btn-primary" @onclick="(() => ShowEditProduct(prod.ProductName, categoryModel.CategoryName))"><i class="oi oi-pencil"></i></button>
+                </td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => AddtoBaskett(prod))"><i class="oi oi-pencil"></i></button>
                 </td>
             </tr>
         }
@@ -75,4 +81,9 @@ else
         NavigationManager.NavigateTo($"/CreateProduct/{CategoryName}");
     }
 
+    private async Task AddtoBaskett(ProductModel product)
+    {
+        await _basketService.AddToBasket(product);
+
+    }
 }

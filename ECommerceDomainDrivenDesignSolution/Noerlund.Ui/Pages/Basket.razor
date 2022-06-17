@@ -1,0 +1,50 @@
+﻿@page "/Basket"
+@inject IBasketService _basketService
+
+<h3>Kurv</h3>
+
+@if (ProductList == null || ProductList.Count <= 0)
+{
+    <span>Du har ingen produkter i kurven</span>
+}
+else
+{
+    <div>
+        @foreach (var item in ProductList)
+        {
+            <div class="item-container">
+                <div class="item-name">
+                    <h5><a href="/product/@item.ProductId">@item.ProductName</a></h5>
+                    <br />
+                    <button class="btn-delete" @onclick="@(() => DeleteItem(item))">Delete</button>
+                </div>
+                <div class="item-price">$@(item.ProductPrice)</div>
+            </div>
+        }
+        <div style="text-align: center; margin-top: 10px;">
+            <button class="btn btn-primary btn-lg" @onclick="PlaceOrder">Place Order</button>
+        </div>
+    </div>
+}
+
+
+@code {
+
+    public List<ProductModel> ProductList = new List<ProductModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProductList = await _basketService.GetBasketItems();
+    }
+
+    private async Task DeleteItem(ProductModel item)
+    {
+        await _basketService.DeleteItem(item);
+        ProductList = await _basketService.GetBasketItems();
+    }
+
+    private async Task PlaceOrder()
+    {
+        await _basketService.EmptyCart();
+    }
+}

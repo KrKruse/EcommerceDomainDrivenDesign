@@ -1,0 +1,31 @@
+﻿@inject ISyncLocalStorageService _localStorageService
+@inject IBasketService _basketService
+
+
+
+
+<a href="Basket" class="btn btn-info">
+    <i class="oi oi-cart"></i>
+    cart
+    <span class="badge badge-pill badge-light">@GetProductCount()</span>
+</a>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        _basketService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        _basketService.OnChange -= StateHasChanged;
+    }
+
+    private int GetProductCount()
+    {
+        var basket = _localStorageService.GetItem<List<ProductModel>>("basket");
+        return basket != null ? basket.Count : 0;
+    }
+
+}

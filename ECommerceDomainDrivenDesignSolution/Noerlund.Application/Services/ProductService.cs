@@ -28,7 +28,7 @@ namespace Noerlund.Application.Services
 
         public async Task UpdateProductAsync(ProductDtoRequest p)
         {
-            var toBeUpdated = new Product(p.ProductId, p.Price, p.ProductName, p.Description, p.CategoryId);
+            var toBeUpdated = new Product(p.ProductId, p.ProductPrice, p.ProductName, p.Description, p.CategoryId);
 
             await _repo.UpdateProductAsync(toBeUpdated);
         }

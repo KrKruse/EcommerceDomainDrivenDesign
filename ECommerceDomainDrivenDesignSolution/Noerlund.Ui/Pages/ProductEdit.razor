@@ -21,7 +21,7 @@ else
     </div>
     <div>
         <label for="Price">Pris</label>
-        <InputNumber id="Price" @bind-Value="prod.Price" class="form-control"></InputNumber>
+        <InputNumber id="Price" @bind-Value="prod.ProductPrice" class="form-control"></InputNumber>
     </div>
     <div>
         <label for="ProductDesription">Produkts Beskrivelse</label>
@@ -51,7 +51,7 @@ else
 
     ProductModel prod = new ProductModel();
 
-    CreateProductModel createProd = new CreateProductModel();
+    ProductModel createProd = new ProductModel();
 
     CategoryModel categoryModel = new CategoryModel();
 
