@@ -8,7 +8,7 @@ namespace Noerlund.Ui.Services
 {
     public interface ICustomerService
     {
-        Task CreateCustomerAsync(CustomerModel cos);
+        Task <CustomerModel> CreateCustomerAsync(CustomerModel cos);
         Task DeleteCustomerAsync(Guid id);
         Task UpdateCustomerAsync(CustomerModel cat);
         Task<CustomerModel> GetCustomerByGuidId(Guid id);

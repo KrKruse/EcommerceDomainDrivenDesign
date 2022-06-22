@@ -1,5 +1,6 @@
 ﻿@page "/Basket"
 @inject IBasketService _basketService
+@inject NavigationManager NavigationManager
 
 <h3>Kurv</h3>
 
@@ -18,7 +19,6 @@ else
                     <br />
                     <button class="btn-delete" @onclick="@(() => DeleteItem(item))">Delete</button>
                 </div>
-                <div class="item-price">$@(item.ProductPrice)</div>
             </div>
         }
         <div style="text-align: center; margin-top: 10px;">
@@ -43,8 +43,8 @@ else
         ProductList = await _basketService.GetBasketItems();
     }
 
-    private async Task PlaceOrder()
+    void PlaceOrder()
     {
-        await _basketService.EmptyCart();
+        NavigationManager.NavigateTo("/Checkout");
     }
 }

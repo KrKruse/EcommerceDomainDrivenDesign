@@ -19,9 +19,8 @@ namespace Noerlund.Application.Services
         }
         public async Task CreateOrderItemAsync(CreateOrderItemDto orderItem)
         {
-            // tjek om produkt er der, måske slet 
-            Guid id = Guid.NewGuid();
-            var orderIt = new OrderItem(id, orderItem.OrderId, orderItem.ProductId, orderItem.Quantity);
+            
+            var orderIt = new OrderItem(orderItem.OrderItemId, orderItem.OrderId, orderItem.ProductId, orderItem.Quantity);
             await _repo.CreateOrderItemAsync(orderIt);
         }
 

@@ -27,9 +27,9 @@ namespace Noerlund.Ui.Services
             }
         }
 
-        public Task DeleteProductAsync(Guid id)
+        public async Task DeleteProductAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var response = await _client.DeleteAsync($@"api/v1/Product/{id}");
         }
 
         public async Task<List<ProductModel>> GetAllProductsByCategory(Guid categoryId)

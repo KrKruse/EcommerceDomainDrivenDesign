@@ -19,8 +19,7 @@ namespace Noerlund.Application.Services
         }
         public async Task CreateCustomerAsync(CreateCustomerDto cos)
         {
-            Guid id = Guid.NewGuid();
-            var customer = new Customer(id, cos.CustomerName, cos.CustomerEmail, cos.PhoneNumber);
+            var customer = new Customer(cos.CustomerId, cos.CustomerName, cos.CustomerEmail, cos.PhoneNumber);
             await _repo.CreateCustomerAsync(customer);
         }
 

@@ -10,7 +10,7 @@ namespace Noerlund.Application.Models
 {
     public class CreateOrderDto
     {
-
+        public Guid OrderId { get; set; }
         public Guid CustomerId { get; set; }
         public int TotalPrice { get; set; }
 

@@ -19,7 +19,6 @@ else
         <thead>
         <tr>
             <th>Name</th>
-            <th>Pris</th>
             <th>Description</th>
         </tr>
         </thead>
@@ -28,13 +27,15 @@ else
         {
             <tr>
                 <td>@prod.ProductName</td>
-                <td>@prod.ProductPrice</td>
                 <td>@prod.Description</td>
                 <td>
-                    <button class="btn btn-primary" @onclick="(() => ShowEditProduct(prod.ProductName, categoryModel.CategoryName))"><i class="oi oi-pencil"></i></button>
+                    <button class="btn btn-primary" @onclick="(() => ShowEditProduct(prod.ProductName, categoryModel.CategoryName))">Rediger Produkt</button>
                 </td>
                 <td>
-                    <button class="btn btn-primary" @onclick="(() => AddtoBaskett(prod))"><i class="oi oi-pencil"></i></button>
+                    <button class="btn btn-primary" @onclick="(() => AddtoBaskett(prod))">Tilføj til kurv</button>
+                </td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => DeleteProduct(prod.ProductId))">Slet Produkt</button>
                 </td>
             </tr>
         }
@@ -85,5 +86,10 @@ else
     {
         await _basketService.AddToBasket(product);
 
+    }
+
+    private async Task DeleteProduct(Guid id)
+    {
+        await _productService.DeleteProductAsync(id);
     }
 }

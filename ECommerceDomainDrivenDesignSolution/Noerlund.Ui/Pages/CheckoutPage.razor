@@ -1,0 +1,85 @@
+﻿@page "/Checkout"
+@inject ICustomerService _customerService
+@inject IOrderService _orderService
+@inject IOrderItemService _orderItemService
+@inject IBasketService _basketService
+
+<h3>CheckoutPage</h3>
+<EditForm Model="cus" OnSubmit="HandleSubmit">
+    <div>
+        <label for="CustomerName">Navn</label>
+        <InputText id="CustomerName" @bind-Value="cus.CustomerName" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="CustomerMail">Email</label>
+        <InputText id="CustomerMail" @bind-Value="cus.CustomerEmail" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="phoneNumber">Telefon Nummer</label>
+        <InputNumber id="phoneNumber" @bind-Value="cus.PhoneNumber" class="form-control"></InputNumber>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">@btnText</button>
+</EditForm>
+@code {
+
+    public CustomerModel cus = new CustomerModel();
+    public CustomerModel cus2 = new CustomerModel();
+    public OrderModel ord = new OrderModel();
+    public OrderItemModel orditm = new OrderItemModel();
+
+    public List<ProductModel> ProductList = new List<ProductModel>();
+
+    string btnText = "Afslut Ordre";
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProductList = await _basketService.GetBasketItems();
+    }
+
+    void HandleSubmit()
+    {
+        cus.CustomerId = Guid.NewGuid();
+        _customerService.CreateCustomerAsync(cus);
+        System.Threading.Thread.Sleep(1000);
+        int totalPrice = 0;
+
+        foreach (var p in ProductList)
+        {
+            totalPrice += p.ProductPrice;
+        }
+
+        ord.CustomerId = cus.CustomerId;
+        ord.TotalPrice = totalPrice;
+        ord.OrderId = Guid.NewGuid();
+
+        createOrder(ord);
+        System.Threading.Thread.Sleep(1000);
+        orditm.Quantity = 1;
+        orditm.OrderId = ord.OrderId;
+
+        foreach (var prod in ProductList)
+        {
+            orditm.OrderItemId = Guid.NewGuid();
+            orditm.ProductId = prod.ProductId;
+            CreateOrderItem(orditm);
+            System.Threading.Thread.Sleep(1000);
+        }
+    }
+
+    async Task createCustomer(CustomerModel cust)
+    {
+        await _customerService.CreateCustomerAsync(cust);
+    }
+
+    async Task createOrder(OrderModel ordr)
+    {
+        await _orderService.CreateOrderAsync(ordr);
+    }
+
+    async Task CreateOrderItem(OrderItemModel orditms)
+    {
+        await _orderItemService.CreateOrderItemAsync(orditms);
+    }
+
+}

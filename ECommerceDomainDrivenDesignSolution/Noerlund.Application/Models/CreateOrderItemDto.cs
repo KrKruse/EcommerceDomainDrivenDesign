@@ -8,6 +8,7 @@ namespace Noerlund.Application.Models
 {
     public class CreateOrderItemDto
     {
+        public Guid OrderItemId { get; set; }
         public int Quantity { get; set; }
 
         public Guid OrderId { get; set; }

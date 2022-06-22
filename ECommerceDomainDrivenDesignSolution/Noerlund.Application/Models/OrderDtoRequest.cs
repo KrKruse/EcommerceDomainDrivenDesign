@@ -11,8 +11,6 @@ namespace Noerlund.Application.Models
     {
         public Guid OrderId { get; set; }
         public int TotalPrice { get; set; }
-
-
         public Guid CustomerId { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Noerlund.Ui.Services
 {
     public interface IOrderService
     {
-        Task CreateOrderAsync(OrderModel order);
+        Task <OrderModel> CreateOrderAsync(OrderModel order);
         Task DeleteOrderAsync(Guid id);
         Task UpdateOrderAsync(OrderModel order);
         Task<OrderModel> GetOrderByGuidId(Guid id);
